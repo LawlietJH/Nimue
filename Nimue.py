@@ -2,7 +2,7 @@
 # Python 3
 # By: LawlietJH
 # Nimue
-# v1.0.2
+# v1.0.3
 
 import time
 import os
@@ -77,17 +77,17 @@ def Confirm():
 		
 		Cls()
 		
-		print("\n\n\t [+] Activar Clave (S/N):\n\n")
+		print("\n\n\n\t [+] Activar Clave (S/N):\n")
 		
 		Opc = input("\t  > ").lower()
 		
 		if Opc == "s" or Opc == "si":
 			Lock()
 		elif Opc == "n" or Opc == "no":
-			print("\n\n\t [*] Bye...")
+			print("\n\t [*] Bye...")
 			End(1)
 		else:
-			print("\n\n\t [!] Escribe Si/No")
+			print("\n\t [!] Escribe Si/No")
 			Sleep()
 
 
@@ -112,8 +112,8 @@ def Unlock():
 		
 		Cont += 1
 		
-		print("\n\n\t [+] Ingrese La Clave Para Poder Acceder A Su Carpeta Protegida.\n")
-		Clave = Access("EnyLane","\t  > ")
+		print("\n\n\n\t [+] Ingrese La Clave Para Poder Acceder A Su Carpeta Protegida.\n")
+		Clave = Access("ZióN","\t  > ")
 		
 		if Clave == True:
 			
@@ -125,18 +125,18 @@ def Unlock():
 		
 		else:
 			
-			print("\n\t\t\t [!] Clave Incorrecta!")
+			print("\n\t [!] Clave Incorrecta!")
 			Sleep()
 		
 	Fail()
 
 
-def MDLocker():
+def Create():
 	
 	Sys("md Protegida")
 	
-	print("\n\t [*] La Carpeta 'Protegida' Fue Creada Satisfactoriamente.")
-	End(0)
+	print("\n\n\n\t [*] La Carpeta 'Protegida' Fue Creada Satisfactoriamente.")
+	End(0, 3)
 
 
 
@@ -161,8 +161,9 @@ def Menu():
 	WinSize(12,80)
 	
 	if os.path.exists("Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"): Unlock()
-	if not os.path.exists("Protegida"): MDLocker()
+	if not os.path.exists("Protegida"): Create()
 	else: Confirm()
+
 
 
 #=======================================================================
