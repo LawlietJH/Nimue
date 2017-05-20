@@ -2,7 +2,7 @@
 # Python 3
 # By: LawlietJH
 # Nimue
-# v1.0.3
+# v1.0.4
 
 import time
 import os
@@ -67,86 +67,6 @@ def WinSize(Lines, Cols):
 
 
 
-#=======================================================================
-
-
-
-def Confirm():
-	
-	while True:
-		
-		Cls()
-		
-		print("\n\n\n\t [+] Activar Clave (S/N):\n")
-		
-		Opc = input("\t  > ").lower()
-		
-		if Opc == "s" or Opc == "si":
-			Lock()
-		elif Opc == "n" or Opc == "no":
-			print("\n\t [*] Bye...")
-			End(1)
-		else:
-			print("\n\t [!] Escribe Si/No")
-			Sleep()
-
-
-
-def Lock():
-	
-	Sys('ren Protegida "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"')
-	Sys('attrib +h +s +r "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"')
-	
-	print("\n\t [*] Carpeta Protegida Exitosamente!")
-	End(0)
-
-
-
-def Unlock():
-	
-	Cont = 0
-	
-	while Cont < 3:
-		
-		Cls()
-		
-		Cont += 1
-		
-		print("\n\n\n\t [+] Ingrese La Clave Para Poder Acceder A Su Carpeta Protegida.\n")
-		Clave = Access("ZióN","\t  > ")
-		
-		if Clave == True:
-			
-			Sys('attrib -h -s -r "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"')
-			Sys('ren "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}" Protegida')
-			
-			print("\n\t [*] Carpeta Desbloqueada Exitosamente!")
-			End(0)
-		
-		else:
-			
-			print("\n\t [!] Clave Incorrecta!")
-			Sleep()
-		
-	Fail()
-
-
-def Create():
-	
-	Sys("md Protegida")
-	
-	print("\n\n\n\t [*] La Carpeta 'Protegida' Fue Creada Satisfactoriamente.")
-	End(0, 3)
-
-
-
-def Fail():
-	
-	print("\n\t [!] Lo Siento, Pero Tu No Eres El Propietario.\n")
-	End(1, 2.5)
-
-
-
 def End(num=0, Time=1.5):
 	
 	Sleep(Time)
@@ -154,15 +74,78 @@ def End(num=0, Time=1.5):
 
 
 
-def Menu():
+#=======================================================================
+
+
+
+def Main():
+	
+	Cont = 0
 	
 	Cls()
 	Sys("Title Carpeta Protegida")
 	WinSize(12,80)
 	
-	if os.path.exists("Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"): Unlock()
-	if not os.path.exists("Protegida"): Create()
-	else: Confirm()
+	if os.path.exists("Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"):
+				
+		while Cont < 3:
+			
+			Cls()
+			
+			Cont += 1
+			
+			print("\n\n\n\t [+] Ingrese La Clave Para Poder Acceder A Su Carpeta Protegida.\n")
+			Clave = Access("ZióN","\t  > ")
+			
+			if Clave == True:
+				
+				Sys('attrib -h -s -r "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"')
+				Sys('ren "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}" Protegida')
+				
+				print("\n\t [*] Carpeta Desbloqueada Exitosamente!")
+				End(0)
+			
+			else:
+				
+				print("\n\t [!] Clave Incorrecta!")
+				Sleep()
+		
+		print("\n\t [!] Lo Siento, Pero Tu No Eres El Propietario.\n")
+		
+		End(1, 2.5)
+		
+	if not os.path.exists("Protegida"):
+		
+		Sys("md Protegida")
+		
+		print("\n\n\n\t [*] La Carpeta 'Protegida' Fue Creada Satisfactoriamente.")
+		
+		End(0, 3)
+	
+	else:
+		
+		while True:
+			
+			Cls()
+			
+			print("\n\n\n\t [+] Activar Clave (S/N):\n")
+			
+			Opc = input("\t  > ").lower()
+			
+			if Opc == "s" or Opc == "si":
+				
+				Sys('ren Protegida "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"')
+				Sys('attrib +h +s +r "Control Panel.{21EC2020-3AEA-1069-A2DD-08002B30309D}"')
+				
+				print("\n\t [*] Carpeta Protegida Exitosamente!")
+				End(0)
+				
+			elif Opc == "n" or Opc == "no":
+				print("\n\t [*] Bye...")
+				End(1)
+			else:
+				print("\n\t [!] Escribe Si/No")
+				Sleep()
 
 
 
@@ -172,6 +155,6 @@ def Menu():
 
 if __name__ == "__main__":
 	
-	Menu()
+	Main()
 
 
